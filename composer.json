@@ -1,7 +1,6 @@
 {
     "name": "korodo/jwt-guard",
     "description": "JWT Guard for Laravel 5.4 below",
-    "type": "project",
     "require": {
         "php": "5.6.*",
         "laravel/framework": "5.4.*",
