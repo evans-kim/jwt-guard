@@ -1,0 +1,22 @@
+{
+    "name": "korodo/jwt-guard",
+    "description": "JWT Guard for Laravel 5.4 below",
+    "type": "project",
+    "require": {
+        "php": "5.6.*",
+        "laravel/framework": "5.4.*",
+        "tymon/jwt-auth": "0.5.*"
+    },
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "evanskim",
+            "email": "korodo@naver.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Korodo\\JWTGuard\\": "src"
+        }
+    }
+}
