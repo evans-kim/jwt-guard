@@ -10,6 +10,8 @@ before use this please watch Laravel Document then check how to change auth driv
 ### Install
 
     composer require korodo/jwt-guard
+    php artisan vendor:publish --provider="Korodo\JWTGuard\JWTGuardServiceProvider::class"
+    php artisan jwt:generate
 
 ### Configure
 
