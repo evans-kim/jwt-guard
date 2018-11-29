@@ -6,6 +6,7 @@
         "laravel/framework": "5.4.*",
         "tymon/jwt-auth": "0.5.*"
     },
+    "license" : "MIT",
     "minimum-stability": "dev",
     "authors": [
         {
