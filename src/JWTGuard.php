@@ -16,7 +16,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\JWTAuth;
 
-class JWTGuard extends JWTAuth implements Guard
+class JWTGuard implements Guard
 {
     protected $name;
     /**
@@ -26,18 +26,16 @@ class JWTGuard extends JWTAuth implements Guard
     protected $provider;
     protected $tokenKey;
     protected $loggedOut=true;
+    /**
+     * @var JWTAuth
+     */
+    protected $auth;
 
     public function __construct($name, UserProvider $provider, $app)
     {
         $this->name = $name;
         $this->provider = $provider;
-
-        parent::__construct(
-            $app['tymon.jwt.manager'],
-            $app['tymon.jwt.provider.user'],
-            $app['tymon.jwt.provider.auth'],
-            $app['request']
-        );
+        $this->auth = $app['tymon.jwt.auth'];
     }
     /**
      * Determine if the current user is authenticated.
@@ -70,21 +68,16 @@ class JWTGuard extends JWTAuth implements Guard
             return $this->member;
         }
 
-        $token = $this->getToken();
+        $token = $this->auth->getToken();
 
         if(!$token)
             return null;
 
         $this->tokenKey = $token->get();
 
-        try {
-            $this->member = $this->authenticate($this->tokenKey);
 
-        } catch (TokenExpiredException $e) {
-            $this->loggedOut = true;
-        } catch (JWTException $e) {
-            $this->loggedOut = true;
-        }
+        $this->member = $this->auth->authenticate($this->tokenKey);
+
 
         if ($this->member && $this->tokenKey) {
 
@@ -130,7 +123,7 @@ class JWTGuard extends JWTAuth implements Guard
      */
     public function setUser(Authenticatable $user)
     {
-        $this->tokenKey = $this->fromUser($user);
+        $this->tokenKey = $this->auth->fromUser($user);
         $this->member = $user;
         $this->loggedOut = false;
 
