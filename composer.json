@@ -2,8 +2,8 @@
     "name": "korodo/jwt-guard",
     "description": "JWT Guard for Laravel 5.4 below",
     "require": {
-        "php": "5.6.*",
-        "laravel/framework": "5.4.*",
+        "php": ">=5.6",
+        "laravel/framework": "^5.4",
         "tymon/jwt-auth": "0.5.*"
     },
     "license" : "MIT",
