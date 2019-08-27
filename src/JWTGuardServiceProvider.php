@@ -1,29 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: evanskim
- * Date: 29/11/2018
- * Time: 10:40 AM
- */
 
 namespace Korodo\JWTGuard;
 
-use Auth;
-use Tymon\JWTAuth\Providers\JWTAuthServiceProvider as ServiceProvider;
+use Illuminate\Auth\AuthManager;
+use Illuminate\Support\ServiceProvider;
 
 class JWTGuardServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(AuthManager $auth)
     {
-        parent::boot();
-
-        Auth::extend('jwt', function ($app, $name, array $config) {
-
-            return new JWTGuard(
-                $name,
-                Auth::createUserProvider($config['provider']),
-                $app
-            );
+        $auth->extend('jwt', function ($app, $name, array $config) use ($auth) {
+            return new JWTGuard($app['tymon.jwt.auth'], $auth->createUserProvider($config['provider']));
         });
     }
 }

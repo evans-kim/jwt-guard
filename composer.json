@@ -1,11 +1,6 @@
 {
     "name": "korodo/jwt-guard",
     "description": "JWT Guard for Laravel 5.4 below",
-    "require": {
-        "php": ">=5.6",
-        "laravel/framework": "^5.4",
-        "tymon/jwt-auth": "0.5.*"
-    },
     "license" : "MIT",
     "minimum-stability": "dev",
     "authors": [
@@ -14,9 +9,26 @@
             "email": "korodo@naver.com"
         }
     ],
+    "require": {
+        "php": ">=5.6",
+        "tymon/jwt-auth": "^0.5",
+        "illuminate/auth": "~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0|^0.6",
+        "illuminate/support": "~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0|^0.6",
+        "illuminate/contracts": "~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0|^0.6"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.4.2"
+    },
     "autoload": {
         "psr-4": {
             "Korodo\\JWTGuard\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Korodo\\JWTGuard\\JWTGuardServiceProvider"
+            ]
         }
     }
 }
