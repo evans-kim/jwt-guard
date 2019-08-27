@@ -2,7 +2,7 @@
     "name": "korodo/jwt-guard",
     "description": "JWT Guard for Laravel 5.4 below",
     "license" : "MIT",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "authors": [
         {
             "name": "evanskim",
