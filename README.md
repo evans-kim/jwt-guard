@@ -10,10 +10,21 @@ before use this please watch Laravel Document then check how to change auth driv
 ### Install
 
 ```shell script
-composer require korodo/jwt-guard
-php artisan jwt:generate
+composer require tymon/jwt-auth korodo/jwt-guard:dev-master
 ```
-#### config/auth.php
+### Register Service Providers
+
+config/app.php
+```php
+    'providers'=>[
+        ...
+        App\Providers\RouteServiceProvider::class,
+        \Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        \Korodo\JWTGuard\JWTGuardServiceProvider::class,
+        ...
+    ]
+```
+config/auth.php
 
 ```php
 'guards' => [
@@ -24,6 +35,10 @@ php artisan jwt:generate
     ],
     ...
 ],
+```
+
+```shell script
+php artisan jwt:generate
 ```
 
 ## License
