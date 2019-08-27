@@ -12,9 +12,6 @@ class JWTGuard implements Guard
 {
     use GuardHelpers;
 
-    /** @var Authenticatable */
-    protected $user;
-
     /** @var JWTAuth */
     protected $auth;
 
